@@ -11,8 +11,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Screen2',
-      home: const Screen2(),
+      title: 'Screen3',
+      home: const Screen3(),
     );
   }
 }
@@ -72,6 +72,27 @@ class Screen2 extends StatelessWidget {
         iconTheme: const IconThemeData(color: Colors.black),
       ),
       body: const SizedBox.expand(),
+    );
+  }
+}
+
+class Screen3 extends StatelessWidget {
+  const Screen3({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xFFF7F1FA),
+      body: const Center(
+        child: Text(
+          'BingeFlix',
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 18,
+            fontWeight: FontWeight.normal,
+          ),
+        ),
+      ),
     );
   }
 }
