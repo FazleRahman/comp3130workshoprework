@@ -1,4 +1,5 @@
 ﻿import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,8 +12,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Screen4',
-      home: const Screen4(),
+      title: 'Screen5',
+      home: const Screen5(),
     );
   }
 }
@@ -112,6 +113,28 @@ class Screen4 extends StatelessWidget {
               color: Colors.black,
               fontSize: 18,
               fontWeight: FontWeight.normal,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class Screen5 extends StatelessWidget {
+  const Screen5({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: const Color(0xFF008080),
+      child: SafeArea(
+        child: Center(
+          child: Text(
+            'BingeFlix',
+            style: GoogleFonts.bebasNeue(
+              color: Colors.black,
+              fontSize: 80,
             ),
           ),
         ),
