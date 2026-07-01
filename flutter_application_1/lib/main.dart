@@ -109,7 +109,7 @@ class Screen4 extends StatelessWidget {
           child: Text(
             'BingeFlix',
             style: TextStyle(
-              color: Colors.white,
+              color: Colors.black,
               fontSize: 18,
               fontWeight: FontWeight.normal,
             ),
