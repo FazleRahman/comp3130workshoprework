@@ -11,8 +11,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Screen3',
-      home: const Screen3(),
+      title: 'Screen4',
+      home: const Screen4(),
     );
   }
 }
@@ -90,6 +90,29 @@ class Screen3 extends StatelessWidget {
             color: Colors.black,
             fontSize: 18,
             fontWeight: FontWeight.normal,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class Screen4 extends StatelessWidget {
+  const Screen4({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: const Color(0xFF008080),
+      child: const SafeArea(
+        child: Center(
+          child: Text(
+            'BingeFlix',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontWeight: FontWeight.normal,
+            ),
           ),
         ),
       ),
