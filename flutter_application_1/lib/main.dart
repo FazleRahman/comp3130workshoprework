@@ -12,8 +12,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Screen5',
-      home: const Screen5(),
+      title: 'Screen6',
+      home: const Screen6(),
     );
   }
 }
@@ -136,6 +136,39 @@ class Screen5 extends StatelessWidget {
               color: Colors.black,
               fontSize: 80,
             ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class Screen6 extends StatelessWidget {
+  const Screen6({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.grey.shade300,
+        elevation: 0,
+        centerTitle: true,
+        title: const Text(
+          'BINGEWORTHY TV SHOWS',
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.w700,
+            letterSpacing: 1,
+          ),
+        ),
+      ),
+      backgroundColor: const Color(0xFF008080),
+      body: Center(
+        child: Text(
+          'BINGEFLIX',
+          style: GoogleFonts.bebasNeue(
+            color: Colors.black,
+            fontSize: 80,
           ),
         ),
       ),
