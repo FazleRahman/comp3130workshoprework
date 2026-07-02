@@ -11,3 +11,7 @@ pretty easy as well as it was just making designs, and I excel at that as that i
 ### Time update:
 My time: 2:20AM, July 2nd 2026
 Syd time: 6:20AM, July 2nd 2026
+
+## Week 3
+I use Duolingo regularly, so i am pretty used to it. Opened it up, noticed a couple things noticable, and asked about them in the servey. 
+https://mqedu.qualtrics.com/jfe/form/SV_abjS4DPCy35dx0q
