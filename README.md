@@ -17,5 +17,7 @@ I use Duolingo regularly, so i am pretty used to it. Opened it up, noticed a cou
 https://mqedu.qualtrics.com/jfe/form/SV_abjS4DPCy35dx0q
 
 ## Week 4
-## Week 4
 For this week, we were given the option to make a travel expenses app of make the one through the link. I chose the later as that would be easier and faster for the moment. Started it up properly, created the project. Added the button to go to the next randomized word. Made it prettier but adding padding around randomized word & a Card behind it to add layering. Used a theme to make the app prettier. Changed the styling of the randomized word. Fixed up accessibility issue like text to speech will now pronounce "cheaphead" instead of an "f" instead of the "ph" (tested it myself it works). added the navigation rail, made it such that if small screen, shows only icons, if big screen, shows name next to icons. Put a placeholder on the favourites page while i worked on it. Created teh favourites page.
+
+## week 8
+Special: there is a delete button, but expenses can also be deleted by swiping to the right. Learned it while playing around a couple days back trying to learn a couple things.

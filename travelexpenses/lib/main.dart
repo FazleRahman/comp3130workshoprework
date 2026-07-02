@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'models/expense_model.dart';
+import 'providers/expenses_provider.dart';
 import 'widgets/expenses_list.dart';
 import 'widgets/new_expense.dart';
 
@@ -25,39 +27,42 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Travel Expenses',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color.fromARGB(255, 161, 109, 170),
-          brightness: Brightness.light,
+    return ChangeNotifierProvider(
+      create: (context) => ExpensesProvider(),
+      child: MaterialApp(
+        title: 'Travel Expenses',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color.fromARGB(255, 161, 109, 170),
+            brightness: Brightness.light,
+          ),
+          useMaterial3: true,
+          cardTheme: const CardThemeData(
+            margin: EdgeInsets.symmetric(vertical: 6, horizontal: 16),
+            elevation: 2,
+          ),
+          appBarTheme: const AppBarTheme(
+            backgroundColor: Color.fromARGB(255, 161, 109, 170),
+            foregroundColor: Colors.white,
+          ),
         ),
-        useMaterial3: true,
-        cardTheme: const CardThemeData(
-          margin: EdgeInsets.symmetric(vertical: 6, horizontal: 16),
-          elevation: 2,
+        darkTheme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color.fromARGB(255, 161, 109, 170),
+            brightness: Brightness.dark,
+          ),
+          useMaterial3: true,
+          cardTheme: const CardThemeData(
+            margin: EdgeInsets.symmetric(vertical: 6, horizontal: 16),
+            elevation: 2,
+          ),
+          scaffoldBackgroundColor: const Color.fromARGB(255, 30, 30, 35),
         ),
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Color.fromARGB(255, 161, 109, 170),
-          foregroundColor: Colors.white,
+        themeMode: _isDarkMode ? ThemeMode.dark : ThemeMode.light,
+        home: Expenses(
+          toggleTheme: _toggleTheme,
+          isDarkMode: _isDarkMode,
         ),
-      ),
-      darkTheme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color.fromARGB(255, 161, 109, 170),
-          brightness: Brightness.dark,
-        ),
-        useMaterial3: true,
-        cardTheme: const CardThemeData(
-          margin: EdgeInsets.symmetric(vertical: 6, horizontal: 16),
-          elevation: 2,
-        ),
-        scaffoldBackgroundColor: const Color.fromARGB(255, 30, 30, 35),
-      ),
-      themeMode: _isDarkMode ? ThemeMode.dark : ThemeMode.light,
-      home: Expenses(
-        toggleTheme: _toggleTheme,
-        isDarkMode: _isDarkMode,
       ),
     );
   }
@@ -78,49 +83,24 @@ class Expenses extends StatefulWidget {
 }
 
 class _ExpensesState extends State<Expenses> {
-  final List<Expense> _registeredExpenses = [
-    Expense(
-      name: 'Birthday Dinner',
-      amount: 300,
-      date: DateTime.now(),
-      category: Category.food,
-    ),
-    Expense(
-      name: 'Kayaking tour',
-      amount: 70,
-      date: DateTime.now(),
-      category: Category.experience,
-    ),
-  ];
-
   void _openAddExpenseOverlay() {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
-      builder: (ctx) => NewExpense(onSaveExpense: _addExpense),
+      builder: (ctx) => const NewExpense(),
     );
   }
 
-  void _addExpense(Expense expense) {
-    setState(() {
-      _registeredExpenses.add(expense);
-    });
-  }
-
-  void _removeExpense(Expense expense) {
-    setState(() {
-      _registeredExpenses.remove(expense);
-    });
-  }
-
-  Widget _buildCategoryChart() {
+  Widget _buildCategoryChart(List<Expense> expenses) {
     final Map<Category, double> categoryTotals = {};
-    for (var expense in _registeredExpenses) {
-      categoryTotals[expense.category] = (categoryTotals[expense.category] ?? 0) + expense.amount;
+    for (var expense in expenses) {
+      categoryTotals[expense.category] = 
+          (categoryTotals[expense.category] ?? 0) + expense.amount;
     }
 
     final List<MapEntry<Category, double>> sortedData = 
-        categoryTotals.entries.toList()..sort((a, b) => b.value.compareTo(a.value));
+        categoryTotals.entries.toList()
+          ..sort((a, b) => b.value.compareTo(a.value));
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -166,6 +146,8 @@ class _ExpensesState extends State<Expenses> {
 
   @override
   Widget build(BuildContext context) {
+    final expensesProvider = Provider.of<ExpensesProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Travel Expenses'),
@@ -202,16 +184,13 @@ class _ExpensesState extends State<Expenses> {
                 const SizedBox(height: 16),
                 SizedBox(
                   height: 200,
-                  child: _buildCategoryChart(),
+                  child: _buildCategoryChart(expensesProvider.expenses),
                 ),
               ],
             ),
           ),
           Expanded(
-            child: ExpensesList(
-              allExpenses: _registeredExpenses,
-              onRemoveExpense: _removeExpense,
-            ),
+            child: ExpensesList(),
           ),
         ],
       ),

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../models/expense_model.dart';
+import '../providers/expenses_provider.dart';
 
 class NewExpense extends StatefulWidget {
-  const NewExpense({super.key, required this.onSaveExpense});
-
-  final void Function(Expense expense) onSaveExpense;
+  const NewExpense({super.key});
 
   @override
   State<NewExpense> createState() => _NewExpenseState();
@@ -36,32 +36,6 @@ class _NewExpenseState extends State<NewExpense> {
   }
 
   void _submitExpense() {
-    final enteredTitle = _titleController.text;
-    final enteredAmount = double.tryParse(_amountController.text) ?? 0.0;
-
-    if (enteredTitle.isEmpty || enteredAmount <= 0 || _selectedDate == null) {
-      return; // You can show a dialog for validation later
-    }
-
-    final newExpense = Expense(
-      name: enteredTitle,
-      amount: enteredAmount,
-      date: _selectedDate!,
-      category: _selectedCategory,
-    );
-
-    widget.onSaveExpense(newExpense);
-    Navigator.pop(context); // Close modal
-  }
-
-  @override
-  void dispose() {
-    _titleController.dispose();
-    _amountController.dispose();
-    super.dispose();
-  }
-
-    void _saveExpense() {
     final enteredTitle = _titleController.text.trim();
     final enteredAmount = double.tryParse(_amountController.text) ?? 0.0;
 
@@ -83,7 +57,19 @@ class _NewExpenseState extends State<NewExpense> {
     }
 
     if (enteredAmount <= 0 || _selectedDate == null) {
-      // You can add more error messages here
+      showDialog(
+        context: context,
+        builder: (dialogContext) => AlertDialog(
+          title: const Text('Invalid Input'),
+          content: const Text('Please enter a valid amount and select a date'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(dialogContext),
+              child: const Text('Okay'),
+            ),
+          ],
+        ),
+      );
       return;
     }
 
@@ -91,11 +77,29 @@ class _NewExpenseState extends State<NewExpense> {
       name: enteredTitle,
       amount: enteredAmount,
       date: _selectedDate!,
-      category: Category.food, // You can make this dynamic later
+      category: _selectedCategory,
     );
 
-    widget.onSaveExpense(newExpense);
+    // Add using Provider
+    Provider.of<ExpensesProvider>(context, listen: false)
+        .addExpense(newExpense);
+
     Navigator.pop(context);
+
+    // Clear fields
+    _titleController.clear();
+    _amountController.clear();
+    setState(() {
+      _selectedDate = null;
+      _selectedCategory = Category.food;
+    });
+  }
+
+  @override
+  void dispose() {
+    _titleController.dispose();
+    _amountController.dispose();
+    super.dispose();
   }
 
   @override
