@@ -15,3 +15,6 @@ Syd time: 6:20AM, July 2nd 2026
 ## Week 3
 I use Duolingo regularly, so i am pretty used to it. Opened it up, noticed a couple things noticable, and asked about them in the servey. 
 https://mqedu.qualtrics.com/jfe/form/SV_abjS4DPCy35dx0q
+
+## Week 4
+For this week, we were given the option to make a travel expenses app of make the one through the link. I chose the later as that would be easier and faster for the moment. Started it up properly, created the project. Added the button to go to the next randomized word. Made it prettier but adding padding around randomized word & a Card behind it to add layering. Used a theme to make the app prettier. Changed the styling of the randomized word. Fixed up accessibility issue like text to speech will now pronounce "cheaphead" instead of an "f" instead of the "ph" (tested it myself it works).
