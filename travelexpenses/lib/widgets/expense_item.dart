@@ -14,23 +14,16 @@ class ExpenseItem extends StatelessWidget {
         contentPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
         leading: Text(
           '\$${expense.amount.toStringAsFixed(2)}',
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 16,
-          ),
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
         ),
-        title: Text(
-          expense.name,
-          style: Theme.of(context).textTheme.bodyLarge,
+        title: Text(expense.name),
+        subtitle: Row(
+          children: [
+            Icon(categoryIcons[expense.category], size: 16, color: Colors.grey),
+            const SizedBox(width: 6),
+            Text(expense.formattedDate),
+          ],
         ),
-        subtitle: Text(
-          '${expense.date.year}-${expense.date.month.toString().padLeft(2, '0')}-'
-          '${expense.date.day.toString().padLeft(2, '0')} '
-          '${expense.date.hour.toString().padLeft(2, '0')}:'
-          '${expense.date.minute.toString().padLeft(2, '0')}',
-          style: const TextStyle(fontSize: 13),
-        ),
-        trailing: const Icon(Icons.arrow_forward_ios, size: 16),
       ),
     );
   }

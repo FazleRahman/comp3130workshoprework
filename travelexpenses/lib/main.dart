@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'models/expense_model.dart';
 import 'widgets/expenses_list.dart';
+import 'widgets/new_expense.dart';
 
 void main() {
   runApp(const MyApp());
@@ -41,15 +42,37 @@ class _ExpensesState extends State<Expenses> {
       name: 'Kayaking tour',
       amount: 70,
       date: DateTime.now(),
-      category: Category.experience,
+      category: Category.sports,
     ),
   ];
+
+    void _openAddExpenseOverlay() {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (ctx) => NewExpense(
+        onSaveExpense: _addExpense,
+      ),
+    );
+  }
+
+  void _addExpense(Expense expense) {
+    setState(() {
+      _registeredExpenses.add(expense);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Travel Expenses'),
+        actions: [
+          IconButton(
+            onPressed: _openAddExpenseOverlay,
+            icon: const Icon(Icons.add),
+          ),
+        ],
       ),
       body: Column(
         children: [
