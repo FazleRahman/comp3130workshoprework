@@ -28,3 +28,10 @@ Created lib/utils/expense_utils.dart, and test/expense_test.dart for the Unit te
 
 ## week 10
 added firebase authentication
+
+# Finishing Notes
+I have completed all weekly workshop tasks, from week 1 to week 10. 
+Week 11 workshop task was updating on our progress, so i do not know much on what to do about that
+Week 12 and 13 has nothing in it. 
+
+# Thank you for this Opportunity to get some extra marks
