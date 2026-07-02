@@ -25,3 +25,6 @@ Special: there is a delete button, but expenses can also be deleted by swiping t
 ## week 9
 i had already created a widget test file, i updated it with proper test to check if all widgets are running properly or not; correct behaviour. 
 Created lib/utils/expense_utils.dart, and test/expense_test.dart for the Unit tests, to test the logic behind the scenes.
+
+## week 10
+added firebase authentication
