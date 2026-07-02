@@ -85,7 +85,7 @@ class _AuthWrapperState extends State<AuthWrapper> {
   }
 }
 
-// ==================== Main Expenses Screen ====================
+
 class Expenses extends StatefulWidget {
   final VoidCallback toggleTheme;
   final bool isDarkMode;
