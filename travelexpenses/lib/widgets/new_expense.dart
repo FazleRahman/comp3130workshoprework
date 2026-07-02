@@ -61,6 +61,43 @@ class _NewExpenseState extends State<NewExpense> {
     super.dispose();
   }
 
+    void _saveExpense() {
+    final enteredTitle = _titleController.text.trim();
+    final enteredAmount = double.tryParse(_amountController.text) ?? 0.0;
+
+    if (enteredTitle.isEmpty) {
+      showDialog(
+        context: context,
+        builder: (dialogContext) => AlertDialog(
+          title: const Text('Invalid Input'),
+          content: const Text('Please enter a Name for the Expense'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(dialogContext),
+              child: const Text('Okay'),
+            ),
+          ],
+        ),
+      );
+      return;
+    }
+
+    if (enteredAmount <= 0 || _selectedDate == null) {
+      // You can add more error messages here
+      return;
+    }
+
+    final newExpense = Expense(
+      name: enteredTitle,
+      amount: enteredAmount,
+      date: _selectedDate!,
+      category: Category.food, // You can make this dynamic later
+    );
+
+    widget.onSaveExpense(newExpense);
+    Navigator.pop(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(

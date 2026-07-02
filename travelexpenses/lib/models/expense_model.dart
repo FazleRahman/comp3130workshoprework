@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 
 const _uuid = Uuid();
 
-enum Category { food, vehicle, sports, miscellaneous }
+enum Category { food, stay, experience, shopping, vehicle, sports, miscellaneous }
 
 // Icons for each category
 const categoryIcons = {
