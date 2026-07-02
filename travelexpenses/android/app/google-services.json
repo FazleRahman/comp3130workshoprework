@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "797289849265",
+    "project_id": "travelexpense-6cfa2",
+    "storage_bucket": "travelexpense-6cfa2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:797289849265:android:326f69573e73a7b189dd90",
+        "android_client_info": {
+          "package_name": "com.example.travelexpenses"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeOrLEDLhsrWH35F-VZ6AGhXlFDqBhE5o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
