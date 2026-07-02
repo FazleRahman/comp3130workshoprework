@@ -21,3 +21,7 @@ For this week, we were given the option to make a travel expenses app of make th
 
 ## week 8
 Special: there is a delete button, but expenses can also be deleted by swiping to the right. Learned it while playing around a couple days back trying to learn a couple things.
+
+## week 9
+i had already created a widget test file, i updated it with proper test to check if all widgets are running properly or not; correct behaviour. 
+Created lib/utils/expense_utils.dart, and test/expense_test.dart for the Unit tests, to test the logic behind the scenes.
